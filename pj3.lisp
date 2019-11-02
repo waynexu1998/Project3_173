@@ -114,3 +114,38 @@
     (MOD (- x y) y)
   )
 )
+
+(defun FACTORS (x y)                    ;listing FACTORS
+  (if (< y x)
+    (if (equal (MOD x y) 0)
+      (cons y (FACTORS x (+ y 1)))
+      (FACTORS x (+ y 1))
+    )
+    '(1)
+  )
+)
+
+(defun SUM (x)                          ;summing listed factors
+  (if (null x)
+    0
+    (+ (car x) (SUM (cdr x)))
+  )
+)
+
+(defun PERFECTP (x)                     ;PERFECTP 4.1
+  (if (equal x 1)
+    nil
+    (equal x (SUM (FACTORS x 2)))
+  )
+)
+
+(defun ABUNDANTP (x)                    ;ABUNDANTP 4.2
+  (< x (SUM (FACTORS x 2)))
+)
+
+(defun DEFICIENTP (X)                   ;DEFICIENTP 4.3
+  (if (equal x 1)
+    t
+    (> x (SUM (FACTORS x 2)))
+  )
+)
