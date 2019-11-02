@@ -102,5 +102,15 @@
 )
 
 (defun GCD (x y)                       ;GCD 3.4
+  (if (equal y 0)
+    x
+    (GCD y (MOD x y))
+  )
+)
 
+(defun MOD (x y)                       ;assisting MOD function for 3.4
+  (if (< x y)
+    x
+    (MOD (- x y) y)
+  )
 )
