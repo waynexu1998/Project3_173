@@ -149,3 +149,54 @@
     (> x (SUM (FACTORS x 2)))
   )
 )
+
+
+(defun REPL2 (x y)                      ;repl for 2 arg
+  (if (equal y nil)
+    nil
+    (print-l x y)
+  )
+)
+
+(defun REPL1 (x y)                      ;repl for 1 arg
+  (if (equal y nil)
+    nil
+    (print-l1 x y)
+  )
+)
+
+(defun print-l (x y)
+  (format t "(~a ~a ~a) => ~a~%" x (car y) (car (REVERSE y)) (funcall x (car y) (car (REVERSE y))))
+  t
+)
+
+(defun print-l1 (x y)
+  (format t "(~a ~a) => ~a~%" x (car y) (funcall x (car y)))
+  t
+)
+
+(defun append-out ()                      ;append repl
+  (format t "Input a list for APPEND (type nil to quit): ")
+    (finish-output nil)
+    (if (REPL2 'append (read))
+        (append-out)
+    )
+)
+
+(defun REVERSE-out ()                     ;repl reverse
+(format t "Input a list for REVERSE (type nil to quit): ")
+  (finish-output nil)
+  (if (REPL1 'REVERSE (read))
+      (REVERSE-out)
+  )
+)
+
+(defun MAP-out ()
+(format t "Input a list for MAP (type nil to quit): ")
+  (finish-output nil)
+  (if (REPL2 'MAP (read))
+      (MAP-out)
+  )
+)
+
+(MAP-out)
